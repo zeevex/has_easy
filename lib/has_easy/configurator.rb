@@ -23,7 +23,18 @@ module Izzle
         raise ArgumentError, "class #{@klass} has_easy('#{@name}') already defines '#{name}'" if @definitions.has_key?(name)
         @definitions[name] = Definition.new(name, options)
       end
-      
+
+      def define_boolean(name, options = {})
+        truevalue = options.delete(:true) || '1'
+        falsevalue = options.delete(:false) || '0'
+        booloptions = {
+                :type_check => [TrueClass, FalseClass],
+                :preprocess => Proc.new{ |value| value == truevalue },
+                :postprocess => Proc.new{ |value| value ? truevalue : falsevalue }
+        }
+        define(name, booloptions.merge(options))
+      end
+
       def do_metaprogramming_magic_aka_define_methods
         
         easy_accessors, object_accessors = [], []
