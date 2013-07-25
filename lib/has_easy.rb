@@ -102,7 +102,7 @@ module Izzle
         if thing.blank?
           # TODO break all these nested if statements out into helper methods, i like prettier code
           # TODO raise an exception if we don't respond to default_through or the resulting object doesn't respond to the context
-          if definition.has_default_through and respond_to?(definition.default_through) and (through = send(definition.default_through)).blank? == false
+          if definition.has_default_through and respond_to?(definition.default_through, true) and (through = send(definition.default_through)).blank? == false
             value = through.send(context)[name]
           elsif definition.has_default_dynamic
             if definition.default_dynamic.instance_of?(Proc)
