@@ -129,3 +129,6 @@ module Izzle
   end
   
 end
+
+# install
+ActiveRecord::Base.send(:include, Izzle::HasEasy)
