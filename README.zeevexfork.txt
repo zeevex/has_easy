@@ -31,3 +31,6 @@ identically.
   
   attr_accessible :myprefs_flag1, :myprefs_flag2, :myprefs_flag3
   
+TODO:
+
+- check out this fork for rails3 fixes: https://github.com/jwigal/has_easy/commits/master
